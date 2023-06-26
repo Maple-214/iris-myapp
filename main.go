@@ -5,7 +5,7 @@ import "github.com/kataras/iris/v12"
 func main() {
 	app := iris.New()
 
-	booksAPI := app.Party("/v2/api")
+	booksAPI := app.Party("/v3/api")
 	{
 		booksAPI.Use(iris.Compression)
 
