@@ -10,7 +10,7 @@ func main() {
 		booksAPI.Use(iris.Compression)
 
 		// GET: http://localhost:8080/books
-		booksAPI.Get("/demo", commom)
+		booksAPI.Get("/homePageContent", commom)
 		// POST: http://localhost:8080/books
 		// booksAPI.Post("/", create)
 	}
