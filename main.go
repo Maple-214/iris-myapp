@@ -41,7 +41,7 @@ type homePageContent struct {
 	Slides          []SlidesProps    `json:"slides"`
 	Category        []CategoryProps  `json:"category"`
 	LeaderImage     string           `json:"leaderImage"`
-	LeaderPhone     string           `json:"leaderPhone"`
+	LeaderUrl       string           `json:"leaderPhone"`
 	Recommend       []RecommendProps `json:"recommend"`
 	AdvertesPicture string           `json:"advertesPicture"`
 }
@@ -96,7 +96,7 @@ func commom(ctx iris.Context) {
 		Slides:          slides,
 		Category:        category,
 		LeaderImage:     "https://file.adquan.com/upload/20230512/1683882554110940.jpg",
-		LeaderPhone:     "https://creative.adquan.com/show/325724",
+		LeaderUrl:       "https://creative.adquan.com/show/325724",
 		Recommend:       recommend,
 		AdvertesPicture: "https://pic40.photophoto.cn/20160910/0017029583521992_b.jpg",
 	}
