@@ -96,7 +96,7 @@ func commom(ctx iris.Context) {
 		Slides:          slides,
 		Category:        category,
 		LeaderImage:     "https://file.adquan.com/upload/20230512/1683882554110940.jpg",
-		LeaderUrl:       "https://file.adquan.com/uploads_img/1684138950cn8ri.png",
+		LeaderUrl:       "https://creative.adquan.com/show/325724",
 		Recommend:       recommend,
 		AdvertesPicture: "https://pic40.photophoto.cn/20160910/0017029583521992_b.jpg",
 	}
