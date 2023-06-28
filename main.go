@@ -41,7 +41,7 @@ type homePageContent struct {
 	Slides          []SlidesProps    `json:"slides"`
 	Category        []CategoryProps  `json:"category"`
 	LeaderImage     string           `json:"leaderImage"`
-	LeaderUrl       string           `json:"leaderPhone"`
+	LeaderUrl       string           `json:"leaderUrl"`
 	Recommend       []RecommendProps `json:"recommend"`
 	AdvertesPicture string           `json:"advertesPicture"`
 }
