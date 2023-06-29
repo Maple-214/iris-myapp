@@ -10,7 +10,9 @@ func main() {
 		booksAPI.Use(iris.Compression)
 
 		// GET: http://localhost:8080/books
-		booksAPI.Get("/homePageContent", commom)
+		booksAPI.Get("/homePageContent", Api_homePageContent)
+		booksAPI.Get("/floors", Api_floor)
+
 		// POST: http://localhost:8080/books
 		// booksAPI.Post("/", create)
 	}
@@ -18,7 +20,11 @@ func main() {
 	app.Listen(":1111")
 }
 
-// Book example.
+type Response struct {
+	Code    int    `json:"code"`
+	Message string `json:"message"`
+}
+
 type SlidesProps struct {
 	Id    int    `json:"id"`
 	Image string `json:"image"`
@@ -46,7 +52,7 @@ type homePageContent struct {
 	AdvertesPicture string           `json:"advertesPicture"`
 }
 
-func commom(ctx iris.Context) {
+func Api_homePageContent(ctx iris.Context) {
 	slides := []SlidesProps{
 		{Id: 0, Image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBOBdFe_MJJj7v0fJr5tBiGOS64FfmrMkyEQ&usqp=CAU"},
 		{Id: 1, Image: "https://image.maigoo.com/upload/images/20221101/1404314044_750x498.jpg"},
@@ -106,6 +112,45 @@ func commom(ctx iris.Context) {
 	// and client's requirements, instead of ctx.JSON:
 	// ctx.Negotiation().JSON().MsgPack().Protobuf()
 	// ctx.Negotiate(books)
+}
+
+type SlidesFloorProps struct {
+	Id  int    `json:"id"`
+	Src string `json:"src"`
+}
+type FloorProps struct {
+	Title   string             `json:"title"`
+	Slides  []SlidesFloorProps `json:"slides"`
+	Code    int                `json:"code"`
+	Message string             `json:"message"`
+}
+type Floor struct {
+	Data FloorProps `json:"data"`
+}
+
+func Api_floor(ctx iris.Context) {
+	Floor1Props_Slides := []SlidesFloorProps{
+		{Id: 1, Src: "https://img.alicdn.com/bao/uploaded/i4/2200538036853/O1CN01LWLvBa20Uj5q1oL6O_!!0-item_pic.jpg"},
+		{Id: 2, Src: "https://img.alicdn.com/bao/uploaded/i1/2508879272/O1CN0150NbyE2IMdAzrAFXp_!!0-item_pic.jpg"},
+		{Id: 3, Src: "https://img.alicdn.com/bao/uploaded/i4/2508879272/O1CN01oGHDSp2IMd9gNIW0e_!!0-item_pic.jpg"},
+		{Id: 4, Src: "https://img.alicdn.com/bao/uploaded/i3/2508879272/O1CN01g1QHS82IMdAtk8umi_!!0-item_pic.jpg"},
+		{Id: 5, Src: "https://img.alicdn.com/bao/uploaded/i3/6000000001206/O1CN01lIkRv61KmOVSJjQjR_!!6000000001206-0-sm.jpg"},
+	}
+	res := Response{
+		Code:    200,
+		Message: "success",
+	}
+
+	Floor1_Data := FloorProps{
+		Code:    res.Code,
+		Message: res.Message,
+		Title:   "https://m.media-amazon.com/images/S/aplus-media-library-service-media/12d43eb0-bd46-4ede-8750-e69cc696ec45.__CR0,0,970,300_PT0_SX970_V1___.png",
+		Slides:  Floor1Props_Slides,
+	}
+	data := Floor{
+		Data: Floor1_Data,
+	}
+	ctx.JSON(data)
 }
 
 // func create(ctx iris.Context) {
